@@ -1,10 +1,11 @@
-package vn.hoidanit.jobhunter.domain;
+package vn.hoidanit.jobhunter.domain.dto;
 
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,28 +16,24 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import vn.hoidanit.jobhunter.util.SecurityUtil;
-import vn.hoidanit.jobhunter.util.constant.GenderEnum;
 
+@Table(name = "companies")
 @Entity
-@Table(name = "users")
 @Getter
 @Setter
-public class User {
+public class Company {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+    @NotBlank(message = "username không được để trống")
     private String name;
-
-    @NotBlank(message = "email không được để trống")
-    private String email;
-    @NotBlank(message = "password không được để trống")
-    private String password;
-
-    private int age;
-    @Enumerated(EnumType.STRING)
-    private GenderEnum gender;
+    @Column(columnDefinition = "MEDIUMTEXT")
+    private String description;
     private String address;
-    private String refreshToken;
+    private String logo;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss a", timezone = "GMT+7")
     private Instant createdAt;
     private Instant updatedAt;
     private String createdBy;
