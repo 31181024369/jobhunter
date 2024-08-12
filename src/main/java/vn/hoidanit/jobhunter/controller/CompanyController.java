@@ -55,7 +55,9 @@ public class CompanyController {
     }
 
     @GetMapping("/companies/{id}")
+    @ApiMessage("Fetch companies by id")
     public ResponseEntity<Company> fetchCompanyById(@PathVariable("id") long id) {
+
         return ResponseEntity.ok(this.companyService.fetchCompanyById(id));
     }
 
