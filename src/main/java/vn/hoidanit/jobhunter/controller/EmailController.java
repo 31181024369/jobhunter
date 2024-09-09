@@ -21,7 +21,7 @@ public class EmailController {
         this.subscriberService = subscriberService;
     }
 
-    @Scheduled(cron = "*/30 * * * * *")
+    // @Scheduled(cron = "*/30 * * * * *")
     @GetMapping("/email")
     @ApiMessage("Send simple email")
     @Transactional
